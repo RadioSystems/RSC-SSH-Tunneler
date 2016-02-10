@@ -6,7 +6,7 @@ RSC SSH Tunneler
 We wrote this plugin as a workaround for a issue related to debugging PHP code over a VPN.  Due to the nature of how XDebug works,
 debugging is not possible when working over a NATed VPN, such as an IpSec VPN.  This plugin will allow the user to establish
 an SSH tunnel to the server to connect to an instance of DBGp, which will proxy debug requests to the XDebug service.  The
-end result is that debuggin will then work over the VPN.
+end result is that debugging will then work over the VPN.
 
 ## Disclaimer
 
