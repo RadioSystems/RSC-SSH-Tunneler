@@ -1,0 +1,45 @@
+<idea-plugin version="2">
+  <id>com.rsc.idea.plugin.tunneler</id>
+  <name>RSC Tunneler</name>
+  <version>0.9a01</version>
+  <vendor email="awilliams@petsafe.net" url="http://www.petsafe.com">Radio Systems Corp</vendor>
+
+  <description><![CDATA[
+      Autoconfigures SSH tunnels to allow debugging over VPN
+      ]]></description>
+
+  <change-notes><![CDATA[
+      Version 0.9a01<br />
+        Build 01 - Fix issue with null keyStore values throwing nullPointerExceptions<br />
+        Initial build with configuration options and baloon notifications.
+    ]]>
+  </change-notes>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="139.0"/>
+
+  <depends optional="false">com.intellij.modules.lang</depends>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+  <!-- uncomment to enable plugin in all products
+  <depends>com.intellij.modules.lang</depends>
+  -->
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+  </extensions>
+  <actions>
+    <group id="ConnectActionGroup" text="Manage RSC SSH Tunnel" description="Open or close SSH tunnels" popup="true">
+        <action id="open" class="openAction" text="Open SSH Tunnel to Server" description="Open SSH Tunnels"/>
+        <action id="close" class="closeAction" text="Close SSH Tunnel" description="Closes SSH Tunnel"/>
+        <add-to-group group-id="ToolsMenu" anchor="last"/>
+    </group>
+  </actions>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <applicationConfigurable implementation="ConfigurationManager"/>
+  </extensions>
+
+
+</idea-plugin>
