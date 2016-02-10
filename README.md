@@ -45,12 +45,14 @@ plugins section.  Once the plugin is installed, restart your IDE.
 Next, open the IDE's settings pane again, and locate the new section titled 'RSC SSH Tunnel Manager'.  It may be located
 under 'Other Settings.'  Configure the settings for your network as follows:
 
-**Remote Host:**  This is the IP or DNS address of the server hosting your XDebug instance.
-**IDE Port:**     This is the port that XDebug expects your IDE to be listening for debug session on.  Default is 9001.
-**XDebug Port:**  This is the port that XDebug communicates with Apache on.  See your Apache and XDebug configuration.  Default is 9000.
-**Username:**     Username of the SSH user to use.
-**Password:**     Password for the SSH user.
-**Loopback Interface:**  See the 'Loopback Interface' section below.  The plugin will choose a random interface at every connection if you leave this blank.
+
+| **Remote Host:**        | This is the IP or DNS address of the server hosting your XDebug instance.                                                          |
+|-------------------------|------------------------------------------------------------------------------------------------------------------------------------|
+| **IDE Port:**           | This is the port that XDebug expects your IDE to be listening for debug session on.  Default is 9001.                              |
+| **XDebug Port:**        | This is the port that XDebug communicates with Apache on.  See your Apache and XDebug configuration.  Default is 9000.              |
+| **Username:**           | Username of the SSH user to use.                                                                                                   |
+| **Password:**           | Password for the SSH user.                                                                                                         |
+| **Loopback Interface:** | See the 'Loopback Interface' section below.  The plugin will choose a random interface at every connection if you leave this blank. |
 
 Click Ok to save and exit.
 
