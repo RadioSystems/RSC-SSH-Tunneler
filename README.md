@@ -3,10 +3,12 @@ RSC SSH Tunneler
 
 ## Abstract
 
+This is a plugin for JetBrains' family of IDEs.  PHPStorm, PyCharm, CLion, IDEA, etc.
+
 We wrote this plugin as a workaround for a issue related to debugging PHP code over a VPN.  Due to the nature of how XDebug works,
 debugging is not possible when working over a NATed VPN, such as an IpSec VPN.  This plugin will allow the user to establish
 an SSH tunnel to the server to connect to an instance of DBGp, which will proxy debug requests to the XDebug service.  The
-end result is that debuggin will then work over the VPN.
+end result is that debugging will then work over the VPN.
 
 ## Disclaimer
 
@@ -27,17 +29,17 @@ RSC is not liable for ANY issues resulting from the use of this plugin.  You're 
 This requires that a DBGp proxy be installed and configured somewhere on the local network.  For this documentation, we will
 assume that DBGp is installed on the same server as Apache.  If this is not the case in your environment, adjust the settings
 as needed to facilitate the connection.  This documentation will also assume that you have an existing VPN setup, and that
-you are connected to the VPN during all parts of the configurion, except where otherwise noted.
+you are connected to the VPN during all parts of the configuration, except where otherwise noted.
 
-Obviously, you will also need a copy of an IntelliJ-based IDE to use this plugin.  See www.jetbrains.com for an IDE that will
-This plugin was designed with PHPStorm in mind, but will work with and IntelliJ family IDE.
+Obviously, you will also need a copy of an IntelliJ-based IDE to use this plugin.  See www.jetbrains.com for an IDE that will work.
+This plugin was designed with PHPStorm in mind, but will work with any IntelliJ family IDE.
 
-Additionally, this plugin establishes TWO forms of tunnel -- A local tunel and remote tunnel.  The remote tunnel binds to a
+Additionally, this plugin establishes TWO forms of tunnel -- A local tunnel and remote tunnel.  The remote tunnel binds to a
 specific loopback adapter address.  To allow this, you will need to edit your SSH configuration (located by default at /etc/ssh/sshd_config) to set `GatewayPorts`
 to `clientspecified`.  Note that if you have any other services that use SSH tunneling, this will change the syntax of
-ssh connection strings when creating a remote tunnel.  Simply add a leading colon to the any remote tunnel creation requsts (like `ssh -R :9000:localhost:9000`)
+ssh connection strings when creating a remote tunnel.  Simply add a leading colon to the any remote tunnel creation requests (ie: `ssh -R :9000:localhost:9000`)
 
-Build depends on an IntelliJ SDK and the JSCh library, available at http://www.jcraft.com/jsch/.
+Build depends on an IntelliJ SDK and the JSCh library, available at http://www.jcraft.com/jsch/.  
 
 ## Configuration
 
@@ -50,7 +52,7 @@ under 'Other Settings.'  Configure the settings for your network as follows:
 | Field Name              | What it does                                                                                                                       |
 |-------------------------|------------------------------------------------------------------------------------------------------------------------------------|
 | **Remote Host:**        | This is the IP or DNS address of the server hosting your XDebug instance.                                                          | 
-| **IDE Port:**           | This is the port that XDebug expects your IDE to be listening for debug session on.  Default is 9001.                              |
+| **IDE Port:**           | This is the port that XDebug expects your IDE to be listening for debug sessions on.  Default is 9001.                             |
 | **XDebug Port:**        | This is the port that XDebug communicates with Apache on.  See your Apache and XDebug configuration.  Default is 9000.             |
 | **Username:**           | Username of the SSH user to use.                                                                                                   |
 | **Password:**           | Password for the SSH user.                                                                                                         |
@@ -66,16 +68,17 @@ linux servers, this can be any IP address in the 127.0.0.0/8 subnet.  However, y
 You may specify a loopback IP to use.  If you do so, the same address will be used for all tunnels.  This may save you from
 having to register and unregister your IDE with DBGp every time you connect.
 
-If you do not specify a loopback IP, the plugin will choose one automatically at random.  Note that this may result in invalid IPs
-being chosen if your server does not allow any IP in 127.0.0.0/8 to loopback.  Also please note that you will need to register
-and unregister your IDE with every tunnel connection, as DBGp will associate your IDE key with your loopback address.
+If you do not specify a loopback IP, the plugin will choose one automatically at random every time it opens the tunnel.  
+Note that this may result in invalid IPs being chosen if your server does not allow any IP in 127.0.0.0/8 to loopback.  
+Also please note that you will need to register and unregister your IDE with every tunnel connection, as DBGp will 
+associate your IDE key with your loopback address.
 
 ## Usage
 
-Usage is very simple.  Once configured, simply go to Tools->Manage RSC SSH Tunnel->Open SSH Tunnel to Server to open your SSH tunnel.
+Usage is very simple.  Once configured, simply go to `Tools->Manage RSC SSH Tunnel->Open SSH Tunnel to Server` to open your SSH tunnel.
 If all goes well, you will be notified that you have been connected.  You may then XDebug as normal.
 
-Once you are finished, go to Tools->Manage RSC SSH Tunnel->Close SSH Tunnel to disconnect.
+Once you are finished, go to `Tools->Manage RSC SSH Tunnel->Close SSH Tunnel` to disconnect.
 
 ## DBGp Help
 
