@@ -37,6 +37,8 @@ specific loopback adapter address.  To allow this, you will need to edit your SS
 to `clientspecified`.  Note that if you have any other services that use SSH tunneling, this will change the syntax of
 ssh connection strings when creating a remote tunnel.  Simply add a leading colon to the any remote tunnel creation requsts (like `ssh -R :9000:localhost:9000`)
 
+Build depends on an IntelliJ SDK and the JSCh library, available at http://www.jcraft.com/jsch/.
+
 ## Configuration
 
 Once requirements have been met, Install the plugin via the IDE's settings pane.  Use the 'Install from disk' button in the
